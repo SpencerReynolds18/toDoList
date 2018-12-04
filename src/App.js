@@ -1,24 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import ElementCreator from './ElementCreator'
 
 class App extends Component {
+    state = {
+        input: '',
+        list: [],
+        test: "Hello, I am a test!",
+    }
+
+    onChange = (e) => {
+        this.setState({
+            input: e.target.value
+        })
+    }
+
+    onSubmit = e => {
+        e.preventDefault()
+        this.setState({
+            list: [...this.state.list, this.state.input],
+            input: ''
+        })
+    }
+
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
+            <h3>To Do List</h3>
+            <ElementCreator starTrek={this.state.list}/>
+                <form onSubmit={this.onSubmit}>
+                    <input value={this.state.input} onChange={this.onChange}/>
+                    <br/>
+                    <button>Submit</button>
+                </form>
         </header>
       </div>
     );
