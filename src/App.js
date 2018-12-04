@@ -9,7 +9,6 @@ class App extends Component {
     }
 
     onChange = (e) => {
-        console.log("**Turn to face the change**", this.state.input)
         this.setState({
             input: e.target.value
         })
@@ -25,13 +24,15 @@ class App extends Component {
     }
 
   render() {
-      console.log("this is state " + this.state.input)
     return (
       <div className="App">
         <header className="App-header">
-            <div>{this.state.test}</div>
+            <ul>
+                {this.state.list.map((item, index)=> <li key={index}>{item}</li>)}
+            </ul>
                 <form onSubmit={this.onSubmit}>
                     <input value={this.state.input} onChange={this.onChange}/>
+                    <br/>
                     <button>Submit</button>
                 </form>
         </header>
