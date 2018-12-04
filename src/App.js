@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import ElementCreator from './ElementCreator'
 
 class App extends Component {
     state = {
@@ -20,16 +21,14 @@ class App extends Component {
             list: [...this.state.list, this.state.input],
             input: ''
         })
-        console.log("submit was clicked")
     }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-            <ul>
-                {this.state.list.map((item, index)=> <li key={index}>{item}</li>)}
-            </ul>
+            <h3>To Do List</h3>
+            <ElementCreator starTrek={this.state.list}/>
                 <form onSubmit={this.onSubmit}>
                     <input value={this.state.input} onChange={this.onChange}/>
                     <br/>
